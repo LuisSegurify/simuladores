@@ -1,34 +1,7 @@
 <template lang="">
-  <v-app id="inspire">
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-      class="pt-4"
-      color="rgb(19, 59, 125)"
-      mini-variant
-    >
-      <v-avatar
-        v-for="menuElement in menuElements"
-        :key="menuElement.id"
-        color="#fff"
-        :size="menuElement.id === 1 ? 40 : 30"
-        class="d-block text-center mx-auto mb-9"
-      >
-        <v-tooltip bottom>
-          <template v-slot:activator="{ on, attrs }">
-            <v-icon
-              v-bind="attrs"
-              v-on="on"
-                :size="menuElement.size"
-            >
-              {{menuElement.icon}}
-            </v-icon>
-          </template>
-          <span>{{menuElement.info}}</span>
-        </v-tooltip>
-      </v-avatar>
-    </v-navigation-drawer>
-    <v-main class="mt-3">
+  <v-app id="inspire"  v-intro="'Bienvenidos a Segurify simuladores'" v-intro-step="1">
+    <Nav/>
+    <v-main class="pa-0 pt-3">
       <v-container>
         <v-row>
           <v-col cols="12">
@@ -37,11 +10,12 @@
           <v-col
             v-for="evaluation in evaluaciones"
             :key="evaluation.id"
-            cols="4"
-          >
+            cols="4">
             <v-hover
               v-slot="{ hover }"
               open-delay="100"
+              v-intro="'The content of tooltip'"
+              v-intro-if="evaluation.id == 1"
             >
               <v-card height="auto"
               :elevation="hover ? 16 : 2"
@@ -70,7 +44,7 @@
                 <v-list-item >
                   <v-container fluid class="p-0">
                     <v-row>
-                      <v-col class="pb-0" cols="12" v-if="evaluation.percentage > 0">
+                      <!-- <v-col class="pb-0" cols="12" v-if="evaluation.percentage > 0">
                         <p class="aprobacionText">Porcentaje de aprobación</p>
                       </v-col>
                       <v-col class="pb-0" cols="12" v-else>
@@ -88,14 +62,15 @@
                             <strong>{{ Math.ceil(value) }}%</strong>
                           </template>
                         </v-progress-linear>
-                      </v-col>
+                      </v-col> -->
                       <v-col cols="12" class="text-end">
                         <v-btn depressed
                         small
+                        @click='redirecccionar(evaluation.id)'
                         :color="evaluation.percentage > 0 ?
                         'primary' : 'success'">
                         {{evaluation.percentage > 0 ?
-                        'Reintentar Evaluación' : 'Empezar Evaluación'}}
+                        'Revisitar Modulo' : 'Empezar Modulo'}}
                         </v-btn>
                       </v-col>
                     </v-row>
@@ -107,52 +82,20 @@
         </v-row>
       </v-container>
     </v-main>
+    <Footer />
   </v-app>
 </template>
+
 <script>
+import 'intro.js/minified/introjs.min.css';
+import Nav from './Nav.vue';
+import Footer from '../../views/Footer.vue';
+
 export default {
   name: 'Panel',
 
   data() {
     return {
-      menuElements: [
-        {
-          id: 1,
-          icon: 'mdi-home-circle',
-          size: '35',
-          info: 'Panel',
-        },
-        {
-          id: 2,
-          icon: 'mdi-scale-balance',
-          size: '20',
-          info: 'Legal',
-        },
-        {
-          id: 3,
-          icon: 'mdi-account-group',
-          size: '20',
-          info: 'Personas',
-        },
-        {
-          id: 4,
-          icon: 'mdi-skull-crossbones',
-          size: '20',
-          info: 'Daños',
-        },
-        {
-          id: 5,
-          icon: 'mdi-cash-multiple',
-          size: '20',
-          info: 'Mercado',
-        },
-        {
-          id: 6,
-          icon: 'mdi-exit-to-app',
-          size: '20',
-          info: 'Salir',
-        },
-      ],
       evaluaciones: [
         {
           id: 1,
@@ -187,10 +130,42 @@ export default {
           media: '/img/panel/market.png',
         },
       ],
+      views: 0,
     };
   },
 
-  mounted() {},
+  components: {
+    Nav,
+    Footer,
+  },
+
+  mounted() {
+    this.$intro().start(); // start the guide
+    this.$intro().showHints(); // show hints
+  },
+
+  methods: {
+    redirecccionar(id) {
+      console.log(id);
+      switch (id) {
+        case 1:
+          this.$router.push({ name: 'Legal' });
+          break;
+        case 2:
+          this.$router.push({ name: 'People' });
+          break;
+        case 3:
+          this.$router.push({ name: 'Damage' });
+          break;
+        case 4:
+          this.$router.push({ name: 'Market' });
+          break;
+
+        default:
+          break;
+      }
+    },
+  },
 };
 </script>
 
@@ -198,7 +173,6 @@ export default {
 .titulo {
   color: #fe924b;
   width: 100%;
-  padding: 5px;
 }
 
 h3 {
@@ -214,9 +188,10 @@ h3 {
 }
 
 .v-card .on-hover .theme--dark {
-  background-color: rgba(#FFF, 0.8)
+  background-color: rgba(#fff, 0.8);
 }
-.v-card .on-hover .theme--dark>.v-card__text {
-  color: #000
+.v-card .on-hover .theme--dark > .v-card__text {
+  color: #000;
 }
+
 </style>

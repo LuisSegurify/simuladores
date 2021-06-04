@@ -13,6 +13,7 @@
                 <v-carousel-item v-for="(note, i) in notes" :key="i + note.id">
                   <v-sheet color="transparent" height="100%">
                     <v-row class="fill-height" align="center" justify="center">
+                      <h1 v-if="note.typeMedia == 'video'">Video aqui</h1>
                       <img
                         v-if="note.typeMedia == 'picture'"
                         :src="note.media"
@@ -20,12 +21,12 @@
                       />
                       <video
                         class="videoHome"
-                        :src="note.media"
-                        autoplay
-                        poster="/img/home/logoB.png"
                         v-if="note.typeMedia == 'video'"
-                        controls
-                      ></video>
+                        controls="controls" type="video/mp4" preload="none"
+                        width="100%"
+                      >
+                        <source :src="note.media" autostart="false">
+                      </video>
                       <p class="contenidoSlice">{{ note.contenido }}</p>
                     </v-row>
                   </v-sheet>
