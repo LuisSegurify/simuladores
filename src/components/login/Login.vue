@@ -17,7 +17,7 @@
       </v-col>
       <v-col cols="12">
         <v-text-field
-          v-model="lastName"
+          v-model="password"
           :rules="nameRules"
           label="Escribe tu código sms"
           required
@@ -29,9 +29,9 @@
           :disabled="!valid"
           color="primary"
           class="mr-4"
-          @click="validate"
+          @click="inicio"
         >
-          Registrarse
+          Iniciar Sesión
         </v-btn>
       </v-col>
     </v-form>
@@ -45,6 +45,7 @@ export default {
   data: () => ({
     valid: true,
     name: '',
+    password: null,
     nameRules: [
       (v) => !!v || 'Celular es necesario',
       (v) => (v && v.length <= 10) || 'Name must be less than 10 characters',
@@ -62,6 +63,14 @@ export default {
     },
     resetValidation() {
       this.$refs.form.resetValidation();
+    },
+
+    inicio() {
+      if (this.name === 'A' && this.password === 'A') {
+        this.$router.push('/conocenos');
+      } else {
+        console.log('Falso');
+      }
     },
   },
 };
