@@ -4,10 +4,12 @@
     v-intro-step="2"
     app
     class="pt-4"
-    color="rgb(19, 59, 125)"
+    color="#152189"
     mini-variant
   >
-    <img src="/img/home/segurifyBco.png" width="100%" alt="" style="padding-bottom:10px">
+    <div style="text-align: center">
+      <img src="/img/home/segurifyBco.png" width="85%" alt="" style="padding-bottom:10px">
+    </div>
 
     <v-avatar
       v-for="menuElement in menuElements"

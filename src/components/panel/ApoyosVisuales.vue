@@ -110,7 +110,7 @@ export default {
 }
 
 h3 {
-  color: rgb(19, 59, 125);
+  color: #152189;
 }
 
 .aprobacionText {
