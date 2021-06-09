@@ -3,7 +3,7 @@
     <Nav />
     <v-main class="pa-0 pt-3">
       <v-container>
-        <v-row>
+        <v-row class="justify-center">
           <v-col cols="12">
             <h1 class="titulo">Daños</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -17,6 +17,7 @@
             v-for="evaluation in evaluaciones"
             :key="evaluation.id"
             cols="4"
+            class="text-center mb-10"
           >
             <v-hover
               v-slot="{ hover }"
@@ -253,12 +254,12 @@ export default {
       evaluaciones: [
         {
           id: 1,
-          name: 'Gastos Médicos Mayores',
+          name: 'Hogar',
           percentage: 50,
           description:
             'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,',
-          media: '/img/panel/people/evaluaciones/gmmn.png',
-          videoTitulo: 'Soy video de Gastos medicos',
+          media: '/img/panel/damage/hogar.png',
+          videoTitulo: 'Soy video de Hogar',
           video: '/video/Video.mp4',
           infografia: '/img/panel/people/evaluaciones/infografia.png',
           inforgraTitle: 'Infografia 1',
@@ -267,12 +268,12 @@ export default {
         },
         {
           id: 2,
-          name: 'Accidentes Personales',
+          name: 'Embarcaciones',
           percentage: 30,
           description:
             'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,',
-          media: '/img/panel/people/evaluaciones/apn.png',
-          videoTitulo: 'Soy video de Accidentes Personales',
+          media: '/img/panel/damage/embarcaciones.png',
+          videoTitulo: 'Soy video de Embarcaciones',
           video: '/video/Video.mp4',
           infografia: '/img/panel/people/evaluaciones/infografia.png',
           inforgraTitle: 'Infografia 2',
@@ -281,12 +282,12 @@ export default {
         },
         {
           id: 3,
-          name: 'Vida Individual',
+          name: 'Autos',
           percentage: 0,
           description:
             'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s,',
-          media: '/img/panel/people/evaluaciones/vin.png',
-          videoTitulo: 'Soy video de Vida Individual',
+          media: '/img/panel/damage/autos.png',
+          videoTitulo: 'Soy video de Autos',
           video: '/video/Video.mp4',
           infografia: '/img/panel/people/evaluaciones/infografia.png',
           inforgraTitle: 'Infografia 3',

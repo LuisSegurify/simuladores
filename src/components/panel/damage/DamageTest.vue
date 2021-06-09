@@ -6,8 +6,8 @@
         <v-row>
           <v-col cols="12">
             <h1 class="titulo">Test de {{origen == 1
-              ? 'Gastos Médicos Mayores' : origen == 2
-              ? 'Accidentes Personales' : 'Vida Individual' }}</h1>
+              ? 'Hogar' : origen == 2
+              ? 'Embarcaciones' : 'Autos' }}</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Iste cupiditate sunt ipsam nesciunt
               explicabo dolores quibusdam accusantium.

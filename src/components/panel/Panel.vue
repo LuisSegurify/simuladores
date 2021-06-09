@@ -10,7 +10,8 @@
           <v-col
             v-for="evaluation in evaluaciones"
             :key="evaluation.id"
-            cols="4">
+            cols="4"
+            class="text-center mb-10">
             <v-hover
               v-slot="{ hover }"
               open-delay="100"

@@ -3,7 +3,7 @@
     <Nav />
     <v-main class="pa-0 pt-3">
       <v-container>
-        <v-row>
+        <v-row class="justify-center">
           <v-col cols="12">
             <h1 class="titulo">Persona</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -17,6 +17,7 @@
             v-for="evaluation in evaluaciones"
             :key="evaluation.id"
             cols="4"
+            class="text-center mb-10"
           >
             <v-hover
               v-slot="{ hover }"
